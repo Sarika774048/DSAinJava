@@ -51,6 +51,36 @@ public class Subsequences {
 
     }
 
+    public static void printSubK2(int idx, int[] arr, int k, int n, List<Integer> list, int sum){
+
+//        if(idx >= n){
+//            int sum = 0;
+//            for(Integer ele : list){
+//                sum += ele;
+//            }
+//            if(sum == k){
+//                for(Integer ele : list){
+//                    System.out.print(ele +" ");
+//                }
+//                System.out.print(" : "+ sum +"\n");
+//            }
+//            return;
+//        }
+        if(idx == n) {
+                if (sum == k) {
+                    System.out.println(list);
+                }
+                return;
+            }
+
+
+        // take
+        list.add(arr[idx]);
+        printSubK2(idx+1, arr, k, n, list, sum + arr[idx]);
+        list.removeLast();
+        printSubK2(idx+1, arr, k, n, list, sum);
+
+    }
 
 
     static void main(String[] args) {
@@ -63,6 +93,9 @@ public class Subsequences {
         int k = 9;
         int n1 = arr2.length;
         printSubK(0, arr2, k, n1, new ArrayList<Integer>());
+
+        System.out.println("Subsequences with sum is k approach 2: ");
+        printSubK2(0, arr2, k, n1, new ArrayList<Integer>(), 0);
 
     }
 }
